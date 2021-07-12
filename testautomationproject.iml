@@ -38,5 +38,20 @@
         <jarDirectory url="file://$MODULE_DIR$/../Selenium_tool/selenium-java-3.141.59" recursive="false" type="SOURCES" />
       </library>
     </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../Selenium_tool/commons-io-2.10.0-bin/commons-io-2.10.0/commons-io-2.10.0-tests.jar!/" />
+          <root url="jar://$MODULE_DIR$/../Selenium_tool/commons-io-2.10.0-bin/commons-io-2.10.0/commons-io-2.10.0.jar!/" />
+        </CLASSES>
+        <JAVADOC>
+          <root url="jar://$MODULE_DIR$/../Selenium_tool/commons-io-2.10.0-bin/commons-io-2.10.0/commons-io-2.10.0-javadoc.jar!/" />
+        </JAVADOC>
+        <SOURCES>
+          <root url="jar://$MODULE_DIR$/../Selenium_tool/commons-io-2.10.0-bin/commons-io-2.10.0/commons-io-2.10.0-sources.jar!/" />
+          <root url="jar://$MODULE_DIR$/../Selenium_tool/commons-io-2.10.0-bin/commons-io-2.10.0/commons-io-2.10.0-test-sources.jar!/" />
+        </SOURCES>
+      </library>
+    </orderEntry>
   </component>
 </module>
