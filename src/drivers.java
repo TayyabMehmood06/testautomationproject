@@ -33,7 +33,7 @@ public class drivers extends setup {
 
             driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
             System.out.println(driver_search_button.getText());
-            Assert.assertEquals(driver.findElement(By.xpath("/html/body/div/div[3]/div[2]/div[2]/div[2]/div/div/div/div[2]/table/tbody/tr/td[1]/strong")).getText(),drivername);
+            Assert.assertEquals(driver.findElement(By.xpath("/html/body/div/div[3]/div[2]/div[2]/div[2]/div/div/div/div[2]/table/tbody/tr/td[1]/strong")).getText(), Constants.drivername);
             FileUtils.copyFile(screenshot,new File("D:\\Buggy Workspace\\testautomationproject\\Screenshots\\Screenshot2.png"));
             System.out.println("Test 1: searching a driver test = Passed");
         }catch (Exception e) {
@@ -51,7 +51,7 @@ public class drivers extends setup {
         // checking whether we are on driver page or not
         Assert.assertEquals(driver.findElement(By.linkText("Non TLC Drivers")).getText(),"Non TLC Drivers");
         WebElement driver_search_button =  driver.findElement(By.name("searchTerm"));
-        driver_search_button.sendKeys(drivername);
+        driver_search_button.sendKeys(Constants.drivername);
         // Selecting Filter by stage value
         Select filter_by_stage = new Select(driver.findElement(By.id("stages")));
         filter_by_stage.selectByVisibleText("Active");
@@ -87,7 +87,7 @@ public class drivers extends setup {
 
             driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
             System.out.println(driver_search_button.getText());
-            Assert.assertEquals(driver.findElement(By.xpath("/html/body/div/div[3]/div[2]/div[2]/div[2]/div/div/div/div[2]/table/tbody/tr/td[1]/strong")).getText(),drivername);
+            Assert.assertEquals(driver.findElement(By.xpath("/html/body/div/div[3]/div[2]/div[2]/div[2]/div/div/div/div[2]/table/tbody/tr/td[1]/strong")).getText(),Constants.drivername);
             FileUtils.copyFile(screenshot,new File("D:\\Buggy Workspace\\testautomationproject\\Screenshots\\Screenshot3.png"));
             System.out.println("Test 2: searching a driver with Stage and car filter test = Passed");
         }catch (Exception e) {
@@ -125,10 +125,10 @@ public class drivers extends setup {
         /// For TLC Drivers
         String random_string = RandomStringUtils.randomAlphanumeric(10);
 
-        firstname.sendKeys(drivername + random_string);
-        lastname.sendKeys();
+        firstname.sendKeys(Constants.drivername + random_string);
+        lastname.sendKeys(Constants.driverlastname + random_string);
 
-
+      //  driver.quit();
 
        /* driver_type.selectByValue("true");
         driver_type.selectByVisibleText("TLC Driver");*/
@@ -138,7 +138,7 @@ public class drivers extends setup {
         driver_type.selectByVisibleText("Non TLC Driver");
         */
 
-      //  driver.quit();
+      //
     }
 
 

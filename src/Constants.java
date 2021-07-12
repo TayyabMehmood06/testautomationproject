@@ -10,6 +10,9 @@ public class Constants {
 
 // Drivers info
     public static String drivername = "Test driver Tayyab_1";
+    public static String driverfirstname = "Test driver Tayyab_1";
+    public static String driverlastname = "test last_name";
+
 
     // Screenshot Directory
     public static String screenshot_directory = "D:\\Buggy Workspace\\testautomationproject\\Screenshots";
