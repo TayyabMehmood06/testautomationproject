@@ -1,9 +1,7 @@
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.Wait;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -11,8 +9,7 @@ import org.testng.annotations.Test;
 import java.io.File;
 import java.util.concurrent.TimeUnit;
 
-public class drivers extends setup{
-    public static String drivername = "Test driver Tayyab_1";
+public class drivers extends setup {
 
     @BeforeTest
     @Override
@@ -28,7 +25,7 @@ public class drivers extends setup{
      // checking whether we are on driver page or not
         Assert.assertEquals(driver.findElement(By.linkText("Non TLC Drivers")).getText(),"Non TLC Drivers");
         WebElement driver_search_button =  driver.findElement(By.name("searchTerm"));
-        driver_search_button.sendKeys(drivername);
+        driver_search_button.sendKeys(Constants.drivername);
         driver_search_button.sendKeys(Keys.ENTER);
         File screenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
         // driver.quit();
@@ -97,7 +94,7 @@ public class drivers extends setup{
             System.out.println("Test 2: searching a driver with Stage and car filter test =  Failed");
             System.out.println(e.getMessage());
         }
-           driver.quit();
+        //   driver.quit();
     }
 
     //////Test 3:  Create a new Driver Functionality
@@ -109,8 +106,39 @@ public class drivers extends setup{
         Assert.assertEquals(driver.findElement(By.linkText("Non TLC Drivers")).getText(),"Non TLC Drivers");
         WebElement createdriverbtn = driver.findElement(By.xpath("/html/body/div/div[3]/div[2]/div[2]/div[1]/div[4]/div/button"));
         createdriverbtn.click();
+        WebElement firstname, lastname, phone, email, streetaddress, city, state, zip, dmv_licence, tlc_license, adddriverfrombtn, cancelbutn ;
 
-        driver.quit();
+       // Accessing Form Elements
+        firstname = driver.findElement(By.id("firstName"));
+        lastname = driver.findElement(By.id("lastName"));
+        phone = driver.findElement(By.id("phone"));
+        email = driver.findElement(By.id("email"));
+        streetaddress = driver.findElement(By.id("streetAddress"));
+        city = driver.findElement(By.id("city"));
+        state = driver.findElement(By.id("state"));
+        zip = driver.findElement(By.id("zipCode"));
+        Select driver_type = new Select(driver.findElement(By.id("isTlc")));
+        dmv_licence = driver.findElement(By.id("dmvLicense"));
+        tlc_license = driver.findElement(By.id("tlcLicense"));
+
+        // Populating form elements
+        /// For TLC Drivers
+        String random_string = RandomStringUtils.randomAlphanumeric(10);
+
+        firstname.sendKeys(drivername + random_string);
+        lastname.sendKeys();
+
+
+
+       /* driver_type.selectByValue("true");
+        driver_type.selectByVisibleText("TLC Driver");*/
+        /*
+        For Non TLC
+        driver_type.selectByValue("false");
+        driver_type.selectByVisibleText("Non TLC Driver");
+        */
+
+      //  driver.quit();
     }
 
 

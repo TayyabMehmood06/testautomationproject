@@ -3,8 +3,7 @@
 <suite name="All Test Suite">
     <test verbose="2" preserve-order="true" name="D:/Buggy Workspace/testautomationproject">
      <classes>
-         <class name="setup">
-         </class>
+         <class name="setup"></class>
          <class name="login"></class>
          <class name="drivers"></class>
      </classes>

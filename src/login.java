@@ -1,10 +1,4 @@
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.testng.Assert;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
-
-public class login  extends setup{
+public class login  extends setup {
 
 
  /*   @BeforeTest
@@ -20,8 +14,8 @@ public class login  extends setup{
         WebElement username = driver.findElement(By.name("username"));
         WebElement password = driver.findElement(By.name("password"));
         WebElement loginbutton = driver.findElement(By.xpath("//input[@type=\"submit\"]"));
-        username.sendKeys("afnan.khalid");
-        password.sendKeys("techoffice");
+        username.sendKeys(Constants.username);
+        password.sendKeys(Constants.password);
         loginbutton.click();
         Assert.assertEquals(driver.findElement(By.linkText("Drivers")).getText(),"Drivers");
         //driver.quit();
