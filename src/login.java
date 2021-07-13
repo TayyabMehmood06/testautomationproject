@@ -199,16 +199,22 @@ public class login  extends setup {
         username.sendKeys(random_stringusername);
         password.sendKeys(random_stringusername);
         loginbutton.click();
-        File screenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+       // File screenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        Screenshot screenshot=new AShot().shootingStrategy(ShootingStrategies.viewportPasting(1000)).takeScreenshot(driver);
+
         try {
             Assert.assertEquals(driver.findElement(By.linkText("Drivers")).getText(),"Drivers");
 
-            FileUtils.copyFile(screenshot,new File(Constants.screenshot_directory + "\\Screenshot8.png"));
+         //   FileUtils.copyFile(screenshot,new File(Constants.screenshot_directory + "\\Screenshot8.png"));
             System.out.println(" Test 8: To verify login with Alphanumeric characters = Passed");
         } catch(Exception e){
-            System.out.println("Test 8: To verify login with Alphanumeric characters = Failed");
-            System.out.println(e.getMessage());
-
+            try{
+               // driver.manage().window().maximize();
+                ImageIO.write(screenshot.getImage(),"PNG",new File(Constants.screenshot_directory + "\\Screenshot8.png"));
+            } catch (Exception a) {
+                System.out.println("Test 8: To verify login with Alphanumeric characters = Failed");
+                System.out.println(a.getMessage());
+            }
         }
     }
     @AfterTest
