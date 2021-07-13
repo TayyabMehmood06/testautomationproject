@@ -3,6 +3,7 @@ import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -22,9 +23,9 @@ public class drivers extends setup {
     //////Test 1:  For searching a driver
     @Test (priority = 1)
     public void searchdriver(){
-    //System.out.println("Test");
+        //System.out.println("Test");
 
-     // checking whether we are on driver page or not
+        // checking whether we are on driver page or not
         Assert.assertEquals(driver.findElement(By.linkText("Non TLC Drivers")).getText(),"Non TLC Drivers");
         WebElement driver_search_button =  driver.findElement(By.name("searchTerm"));
         driver_search_button.sendKeys(Constants.drivername);
@@ -42,7 +43,7 @@ public class drivers extends setup {
             System.out.println("Test 1: searching a driver test = Failed");
             System.out.println(e.getMessage());
         }
-    //    driver.quit();
+        //    driver.quit();
     }
 
     //////Test 2:  Searching a driver with Filter Criteria
@@ -110,7 +111,7 @@ public class drivers extends setup {
         createdriverbtn.click();
         WebElement firstname, lastname, phone, email, streetaddress, city, state, zip, dmv_licence, tlc_license, adddriverfrombtn, cancelbutn,searchdld ;
 
-       // Accessing Form Elements
+        // Accessing Form Elements
         firstname = driver.findElement(By.id("firstName"));
         lastname = driver.findElement(By.id("lastName"));
         phone = driver.findElement(By.id("phone"));
@@ -134,7 +135,6 @@ public class drivers extends setup {
         lastname.sendKeys(Constants.driverlastname + random_string);
         phone.sendKeys(Constants.driverphoneno + random_string);
         email.sendKeys(Constants.driveremailf+x+ Constants.driveremailf);
-
         streetaddress.sendKeys(Constants.driverstreetaddress);
         city.sendKeys(Constants.drivercity);
         state.sendKeys(Constants.driverstate);
@@ -151,11 +151,8 @@ public class drivers extends setup {
         System.out.println(firstname.toString()+"Lastname:"+ lastname +"Phone:" + phone + "Email:"+email+"Street Address: "+ streetaddress +"City: "+city+"State: "+state+"ZipCode: "+ zip +"DMV License: "+dmv_licence+"TLC License"+tlc_license);
         adddriverfrombtn.click();
         File screenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-
         try{
-
             driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-
             Assert.assertEquals(driver.findElement(By.linkText("Non TLC Drivers")).getText(),"Non TLC Drivers");
             FileUtils.copyFile(screenshot,new File("D:\\Buggy Workspace\\testautomationproject\\Screenshots\\Screenshot4.png"));
             System.out.println("Test 3:  Create a new Driver Functionality = Passed");
@@ -163,11 +160,10 @@ public class drivers extends setup {
             System.out.println("Test 3:  Create a new Driver Functionality = Failed");
             System.out.println(e.getMessage());
         }
-
-
-
-      driver.quit();
     }
-
+    @AfterTest
+    public void teardown(){
+        driver.quit();
+    }
 
 }
