@@ -1,4 +1,5 @@
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -7,7 +8,11 @@ import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+import ru.yandex.qatools.ashot.AShot;
+import ru.yandex.qatools.ashot.Screenshot;
+import ru.yandex.qatools.ashot.shooting.ShootingStrategies;
 
+import javax.imageio.ImageIO;
 import java.io.File;
 
 public class login  extends setup {
@@ -138,9 +143,74 @@ public class login  extends setup {
             System.out.println(e.getMessage());
 
         }
-
     }
+    ///// Test 6: To verify login with incorrect username and correct password
+    @Test (priority = 6)
+    public void login_6(){
+        driver.get(Constants.baseurl);
+        WebElement username = driver.findElement(By.name("username"));
+        WebElement password = driver.findElement(By.name("password"));
+        WebElement loginbutton = driver.findElement(By.xpath("//input[@type=\"submit\"]"));
+        username.sendKeys("Tayyab test");
+        password.sendKeys(Constants.password);
+        loginbutton.click();
+        File screenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        try {
+            Assert.assertEquals(driver.findElement(By.linkText("Drivers")).getText(),"Drivers");
 
+            FileUtils.copyFile(screenshot,new File(Constants.screenshot_directory + "\\Screenshot5.png"));
+            System.out.println(" Test 6: To verify login with incorrect username and correct password = Passed");
+        } catch(Exception e){
+            System.out.println("Test 6: To verify login with incorrect username and correct password = Failed");
+            System.out.println(e.getMessage());
+
+        }
+    }
+    ///// Test 7: To verify login with special characters
+    @Test (priority = 7)
+    public void login_7(){
+        driver.get(Constants.baseurl);
+        WebElement username = driver.findElement(By.name("username"));
+        WebElement password = driver.findElement(By.name("password"));
+        WebElement loginbutton = driver.findElement(By.xpath("//input[@type=\"submit\"]"));
+        username.sendKeys("!@#!@#!@#");
+        password.sendKeys("!@#!@#!@#");
+        loginbutton.click();
+        File screenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        try {
+            Assert.assertEquals(driver.findElement(By.linkText("Drivers")).getText(),"Drivers");
+
+            FileUtils.copyFile(screenshot,new File(Constants.screenshot_directory + "\\Screenshot7.png"));
+            System.out.println(" Test 7: To verify login with special characters = Passed");
+        } catch(Exception e){
+            System.out.println("Test 7: To verify login with special characters = Failed");
+            System.out.println(e.getMessage());
+
+        }
+    }
+    ///// Test 8: To verify login with Alphanumeric characters
+    @Test (priority = 8)
+    public void login_8(){
+        driver.get(Constants.baseurl);
+        WebElement username = driver.findElement(By.name("username"));
+        WebElement password = driver.findElement(By.name("password"));
+        WebElement loginbutton = driver.findElement(By.xpath("//input[@type=\"submit\"]"));
+        String random_stringusername = RandomStringUtils.randomAlphanumeric(8);
+        username.sendKeys(random_stringusername);
+        password.sendKeys(random_stringusername);
+        loginbutton.click();
+        File screenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        try {
+            Assert.assertEquals(driver.findElement(By.linkText("Drivers")).getText(),"Drivers");
+
+            FileUtils.copyFile(screenshot,new File(Constants.screenshot_directory + "\\Screenshot8.png"));
+            System.out.println(" Test 8: To verify login with Alphanumeric characters = Passed");
+        } catch(Exception e){
+            System.out.println("Test 8: To verify login with Alphanumeric characters = Failed");
+            System.out.println(e.getMessage());
+
+        }
+    }
     @AfterTest
     public void teardown(){
         driver.quit();
