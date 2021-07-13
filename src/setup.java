@@ -1,3 +1,4 @@
+
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -7,6 +8,7 @@ import org.testng.annotations.BeforeTest;
 import java.io.File;
 
 public class setup {
+
     public WebDriver driver;
 
     @BeforeTest
