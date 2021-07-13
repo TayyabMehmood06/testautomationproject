@@ -7,6 +7,8 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import java.io.File;
+import java.nio.charset.StandardCharsets;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 public class drivers extends setup {
@@ -106,7 +108,7 @@ public class drivers extends setup {
         Assert.assertEquals(driver.findElement(By.linkText("Non TLC Drivers")).getText(),"Non TLC Drivers");
         WebElement createdriverbtn = driver.findElement(By.xpath("/html/body/div/div[3]/div[2]/div[2]/div[1]/div[4]/div/button"));
         createdriverbtn.click();
-        WebElement firstname, lastname, phone, email, streetaddress, city, state, zip, dmv_licence, tlc_license, adddriverfrombtn, cancelbutn ;
+        WebElement firstname, lastname, phone, email, streetaddress, city, state, zip, dmv_licence, tlc_license, adddriverfrombtn, cancelbutn,searchdld ;
 
        // Accessing Form Elements
         firstname = driver.findElement(By.id("firstName"));
@@ -120,25 +122,51 @@ public class drivers extends setup {
         Select driver_type = new Select(driver.findElement(By.id("isTlc")));
         dmv_licence = driver.findElement(By.id("dmvLicense"));
         tlc_license = driver.findElement(By.id("tlcLicense"));
-
+        searchdld =  driver.findElement(By.name("searchTerm"));
+        searchdld.clear();
+        adddriverfrombtn = driver.findElement(By.cssSelector("body > div:nth-child(8) > div > div.modal.fade.show > div > div > div.modal-footer > button:nth-child(1)"));
         // Populating form elements
         /// For TLC Drivers
-        String random_string = RandomStringUtils.randomAlphanumeric(10);
-
-        firstname.sendKeys(Constants.drivername + random_string);
+        String random_string = RandomStringUtils.randomAlphanumeric(8);
+        Random random = new Random();
+        int x = random.nextInt(1000);
+        firstname.sendKeys(Constants.driverfirstname+random_string);
         lastname.sendKeys(Constants.driverlastname + random_string);
+        phone.sendKeys(Constants.driverphoneno + random_string);
+        email.sendKeys(Constants.driveremailf+x+ Constants.driveremailf);
 
-      //  driver.quit();
-
-       /* driver_type.selectByValue("true");
-        driver_type.selectByVisibleText("TLC Driver");*/
+        streetaddress.sendKeys(Constants.driverstreetaddress);
+        city.sendKeys(Constants.drivercity);
+        state.sendKeys(Constants.driverstate);
+        zip.sendKeys(Constants.driverzipcode);
+        driver_type.selectByValue("true");
+        driver_type.selectByVisibleText("TLC Driver");
         /*
         For Non TLC
         driver_type.selectByValue("false");
         driver_type.selectByVisibleText("Non TLC Driver");
         */
+        dmv_licence.sendKeys(Constants.driverdmv_license + random_string);
+        tlc_license.sendKeys(Constants.drivertlc_license + random_string);
+        System.out.println(firstname.toString()+"Lastname:"+ lastname +"Phone:" + phone + "Email:"+email+"Street Address: "+ streetaddress +"City: "+city+"State: "+state+"ZipCode: "+ zip +"DMV License: "+dmv_licence+"TLC License"+tlc_license);
+        adddriverfrombtn.click();
+        File screenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
 
-      //
+        try{
+
+            driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+
+            Assert.assertEquals(driver.findElement(By.linkText("Non TLC Drivers")).getText(),"Non TLC Drivers");
+            FileUtils.copyFile(screenshot,new File("D:\\Buggy Workspace\\testautomationproject\\Screenshots\\Screenshot4.png"));
+            System.out.println("Test 3:  Create a new Driver Functionality = Passed");
+        }catch (Exception e) {
+            System.out.println("Test 3:  Create a new Driver Functionality = Failed");
+            System.out.println(e.getMessage());
+        }
+
+
+
+      driver.quit();
     }
 
 
