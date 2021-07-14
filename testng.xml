@@ -6,6 +6,7 @@
          <class name="setup"></class>
          <class name="login"></class>
          <class name="drivers"></class>
+         <class name="drivers_profile"></class>
      </classes>
     </test>
 </suite>

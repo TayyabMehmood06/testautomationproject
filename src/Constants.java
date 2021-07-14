@@ -10,6 +10,8 @@ public class Constants {
 
 // Drivers info
     public static String drivername = "Test driver Tayyab_1";
+    public static String searchdrivername = "Test driver Tayyab_1";
+
     public static String driverfirstname = "Test driver Tayyab_1";
     public static String driverlastname = "test last_name";
     public static String driverphoneno = "923126016083";

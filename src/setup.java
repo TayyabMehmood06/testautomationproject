@@ -23,7 +23,7 @@ public class setup {
         System.setProperty("webdriver.gecko.driver", "Constants.firefox_path");
         driver= new FirefoxDriver();
         */
-/*
+
         driver.get(Constants.baseurl);
         WebElement username = driver.findElement(By.name("username"));
         WebElement password = driver.findElement(By.name("password"));
@@ -38,7 +38,7 @@ public class setup {
         } catch(Exception e){
             //FileUtils.copyFile(screenshot,new File(Constants.screenshot_directory + "\\Screenshot1.png"));
             System.out.println(e.getMessage());
-        }*/
+        }
 
 
     }
