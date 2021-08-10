@@ -34,8 +34,10 @@ public class drivers_profile extends setup{
         openbutton.click();
 
         try{
-          
-            Assert.assertEquals(driver.findElement(By.xpath("//*[@class=\"sectionTitle\"]")).getText(),Constants.searchdrivername);
+
+            driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.ByTagName,'OPEN')]")));
 
             FileUtils.copyFile(screenshot,new File("D:\\Buggy Workspace\\testautomationproject\\Screenshots\\Open_driver_profile.png"));
             System.out.println("Test 1:  Opening the Drivers Profile Screen = Passed");
